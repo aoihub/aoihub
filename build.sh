@@ -48,17 +48,25 @@ lua "$CLI_PATH" --preset "$PRESET" "$INPUT_FILE"
 
 TEMP_OUT="./$RAW_FOLDER/AoiHub_RAW.obfuscated.lua"
 
-# 5. Move and Git Push
+# 5. Move and Optional Git Push
 if [ -f "$TEMP_OUT" ]; then
     mkdir -p "$OUTPUT_DIR"
     mv "$TEMP_OUT" "$OUTPUT_DIR/$FINAL_NAME"
     
-    echo "Pushing obfuscated build to Git..."
-    git add "$OUTPUT_DIR/$FINAL_NAME"
-    git commit -m "Build: AoiHub (Update)"
-    git push
-    
-    echo "SUCCESS: Obfuscated script pushed to repository."
+    echo "Build ready: $OUTPUT_DIR/$FINAL_NAME"
+
+    # Ask user before pushing
+    read -p "Do you want to push changes to GitHub? (y/n): " push_choice
+
+    if [[ "$push_choice" == "y" || "$push_choice" == "Y" ]]; then
+        echo "Pushing to Git..."
+        git add "$OUTPUT_DIR/$FINAL_NAME"
+        git commit -m "Build: AoiHub (Update)"
+        git push
+        echo "SUCCESS: Obfuscated script pushed to repository."
+    else
+        echo "Skipped Git push."
+    fi
 else
     echo "ERROR: Obfuscation failed. Check Prometheus output above."
     exit 1
