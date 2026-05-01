@@ -2,7 +2,7 @@
 # Configuration
 RAW_FOLDER="raw"
 INPUT_FILE="./$RAW_FOLDER/AoiHub_RAW.lua"
-OUTPUT_DIR="./src"
+OUTPUT_DIR="/sdcard/tmp"
 FINAL_NAME="obfuscated.lua"
 CLI_PATH="./Prometheus/cli.lua"
 GITIGNORE=".gitignore"
@@ -34,11 +34,13 @@ fi
 echo "Select Obfuscation Preset:"
 echo "1) Medium (Best for GUI/Scanners)"
 echo "2) Strong (Maximum Security)"
+echo "3) Minify (Not an obfuscation))"
 read -p "Enter choice [1-2]: " choice
 
 case $choice in
     1) PRESET="Medium" ;;
     2) PRESET="Strong" ;;
+    3) PRESET="Minify" ;;
     *) echo "Invalid choice, exiting."; exit 1 ;;
 esac
 
