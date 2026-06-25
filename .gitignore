@@ -1,4 +1,6 @@
-# Ignore Raw Folder
+# Ignore Raw Folder and dev files
 raw/
 
-# Ignore Local Test Files
+build.sh
+build2.sh
+

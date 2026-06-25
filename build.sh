@@ -2,7 +2,7 @@
 # Configuration
 RAW_FOLDER="raw"
 INPUT_FILE="./$RAW_FOLDER/AoiHub_RAW.lua"
-OUTPUT_DIR="/sdcard/tmp"
+OUTPUT_DIR="./src"
 FINAL_NAME="obfuscated.lua"
 CLI_PATH="./Prometheus/cli.lua"
 GITIGNORE=".gitignore"
